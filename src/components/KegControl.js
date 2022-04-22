@@ -12,16 +12,26 @@ class KegControl extends React.Component {
     };
   }
 
+  handleClick = () => {
+    this.setState(prevState => ({
+      formShowing: !prevState.formShowing
+    }));
+  }
+
   render(){
     let isVisible = null;
+    let buttonText = null;
     if (this.state.formShowing) {
-      isVisible = <NewKegForm />
+      isVisible = <NewKegForm />;
+      buttonText = "Back to Kegs";
     } else {
-      isVisible = <KegList />
+      isVisible = <KegList />;
+      buttonText = "Add New Keg";
     }
     return (
       <React.Fragment>
         {isVisible}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
