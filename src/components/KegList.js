@@ -5,7 +5,11 @@ import AddKeg from "./AddKeg";
 function KegList(){
   return (
     <React.Fragment>
-      
+      <Keg
+        name="Mug"
+        brand="Mug"
+        price="1"
+        rating="5"/>
     </React.Fragment>
   );
 }
