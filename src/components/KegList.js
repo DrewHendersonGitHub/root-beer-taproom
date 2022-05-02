@@ -1,28 +1,40 @@
 import React from "react";
 import Keg from "./Keg";
-import AddKeg from "./AddKeg";
+import PropTypes from "prop-types";
 
-const list = [
-  {
-    name: "Mug",
-    brand: "Mug",
-    price: "1",
-    rating: "5"
+function KegList(props){
+  let message;
+  if (props.kegList.length === 0) {
+    message = "There are no kegs yet";
   }
-]
-
-function KegList(){
+  else {
+    message = "All Kegs";
+  }
   return (
     <React.Fragment>
-      {list.map((k, index) =>
-        <Keg name={k.name}
+      <h3>{message}</h3>
+      <hr />
+      {props.kegList.map((k) =>
+        <Keg
+          whenKegClicked = { props.onKegSelection }
+          whenSellPint = { props.onSellPint }
+          name={k.name}
           brand={k.brand}
           price={k.price}
           rating={k.rating}
-          key={index}/>
+          pints={k.pints}
+          id={k.id}
+          key={k.id}
+        />
       )}
     </React.Fragment>
   );
 }
+
+KegList.propTypes = {
+  kegList: PropTypes.array,
+  onKegSelection: PropTypes.func,
+  onSellPint: PropTypes.func
+};
 
 export default KegList;
